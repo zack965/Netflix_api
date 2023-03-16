@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FilmAdminController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post("SignUp",[AuthController::class,"SignUp"]);
+// these routes are protected by token
+Route::group(["middleware" => "auth:sanctum"], function () {
+
+    Route::post("CreateFilm",[FilmAdminController::class,"CreateFilm"]);
+    Route::put("UpdateFilm/{film_id}",[FilmAdminController::class,"UpdateFilm"]);
+    Route::get("VieFilmDetails/{film_id}",[FilmAdminController::class,"VieFilmDetails"]);
+});

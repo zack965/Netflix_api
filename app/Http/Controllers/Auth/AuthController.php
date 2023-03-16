@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    //
+    //since we have a token now we will implement sign in later
     public function SignUp(Request $request){
         $request->validate([
             "name" => "required|string|unique:users,name",
@@ -22,6 +22,11 @@ class AuthController extends Controller
             "email"=>$request->email,
             "role_id"=>1
         ]);
-        return response()->json(["user"=>$user]);
+        $token = $user->createToken('myapp')->plainTextToken;
+        $response = [
+            "user" => $user,
+            "token" => $token,
+        ];
+        return response()->json(["user"=>$response]);
     }
 }
