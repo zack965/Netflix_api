@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post("SignUp",[AuthController::class,"SignUp"]);
+Route::post("SignIn",[AuthController::class,"SignIn"]);
 // these routes are protected by token
 Route::group(["middleware" => "auth:sanctum"], function () {
 

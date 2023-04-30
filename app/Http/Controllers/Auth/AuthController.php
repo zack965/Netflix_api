@@ -29,4 +29,26 @@ class AuthController extends Controller
         ];
         return response()->json(["user"=>$response]);
     }
+    public function SignIn(Request $request){
+        $request->validate([
+            "password" => "required|string|confirmed",
+            "email" => "required|string|email"
+        ]);
+        $user = User::where("email",$request->email)->first();
+        if($user){
+            if (Hash::check($request->password, $user->password)) {
+                $token = $user->createToken('myapp')->plainTextToken;
+                $response = [
+                    "user" => $user,
+                    "token" => $token,
+                ];
+                return response()->json($response,200);
+            }else{
+                return response()->json(null,404);
+            }
+
+        }else{
+            return response()->json(null,404);
+        }
+    }
 }
