@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\FilmAdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\UserFilmController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,7 @@ Route::group(["middleware" => "auth:sanctum"], function () {
     Route::post("CreateFilm",[FilmAdminController::class,"CreateFilm"]);
     Route::put("UpdateFilm/{film_id}",[FilmAdminController::class,"UpdateFilm"]);
     Route::get("VieFilmDetails/{film_id}",[FilmAdminController::class,"VieFilmDetails"]);
+
+    //user routes
+    Route::get("SearchForFilmByName/{film_name}/{category_id?}",[UserFilmController::class,"SearchForFilmByName"]);
 });

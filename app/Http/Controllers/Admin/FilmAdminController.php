@@ -43,7 +43,6 @@ class FilmAdminController extends Controller
         $film = Film::find($film_id);
         return response()->json(["film"=>$film]);
     }
-    //later
-    public function SearchForFilmByName(string $file_name){}
-   
+
+
 }
