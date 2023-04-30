@@ -16,5 +16,14 @@ class UserSerieController extends Controller
         $films = Serie::where("serie_name","LIKE","%".$request->serie_name."%")->where("categorie_id",$category_id)->get();
         return response()->json($films,200);
     }
+    public function GetSerieDetails(int $serie_id){
+        $serie = Serie::find($serie_id);
+        if($serie){
+            $serie->episodes;
+            return response()->json($serie,200);
+        }else{
+            return response()->json(false,404);
+        }
+    }
 
 }

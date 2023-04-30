@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Episode;
 use App\Models\Serie;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,18 @@ class AdminSerieController extends Controller
             "serie_name"=>$request->serie_name,
             "serie_director"=>$request->serie_director,
             "categorie_id"=>$categori_app_id,
+        ]);
+        return response()->json($serie,201);
+    }
+    public function CreareEpisode(Request $request){
+        $request->validate([
+            "episode_name"=>"required|string",
+            "serie_id"=>"numeric",
+        ]);
+
+        $serie = Episode::create([
+            "episode_name"=>$request->episode_name,
+            "serie_id"=>$request->serie_id,
         ]);
         return response()->json($serie,201);
     }

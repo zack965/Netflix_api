@@ -33,10 +33,12 @@ Route::group(["middleware" => "auth:sanctum"], function () {
     Route::get("VieFilmDetails/{film_id}",[FilmAdminController::class,"VieFilmDetails"]);
     //admin serie routes
     Route::post("AddSerie",[AdminSerieController::class,"AddSerie"]);
+    Route::post("CreareEpisode",[AdminSerieController::class,"CreareEpisode"]);
     //user routes
     Route::get("SearchForFilmByName/{film_name}/{category_id?}",[UserFilmController::class,"SearchForFilmByName"]);
     Route::post("WatchMovie",[UserFilmController::class,"WatchMovie"]);
     Route::post("AddCommentOnMovie/{film_id}",[UserFilmController::class,"AddCommentOnMovie"]);
     //api route for user in series
     Route::get("SearchForSerieByName/{category_id?}",[UserSerieController::class,"SearchForSerieByName"]);
+    Route::get("GetSerieDetails/{serie_id}",[UserSerieController::class,"GetSerieDetails"]);
 });
