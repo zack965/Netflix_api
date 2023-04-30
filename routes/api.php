@@ -33,4 +33,5 @@ Route::group(["middleware" => "auth:sanctum"], function () {
     //user routes
     Route::get("SearchForFilmByName/{film_name}/{category_id?}",[UserFilmController::class,"SearchForFilmByName"]);
     Route::post("WatchMovie",[UserFilmController::class,"WatchMovie"]);
+    Route::post("AddCommentOnMovie/{film_id}",[UserFilmController::class,"AddCommentOnMovie"]);
 });
